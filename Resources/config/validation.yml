@@ -1,0 +1,22 @@
+WobbleCode\UserBundle\Document\User:
+    properties:
+        email:
+            - WobbleCode\UserBundle\Validator\Constraints\NotAnonymousEmail:
+                groups: [Registration, Profile]
+            - Length:
+                min: 5
+                minMessage: fos_user.email.short
+                max: 255
+                maxMessage: fos_user.email.long
+                groups: [Registration, Profile]
+            - NotBlank:
+                message: fos_user.email.blank
+                groups: [Registration, Profile]
+            - Email:
+                message: fos_user.email.invalid
+                groups: [Registration, Profile]
+            # - Regex:
+            #     pattern: '/.*\+.*\@.*/'
+            #     match:   false
+            #     message: user.email.alias
+            #     groups: [Registration, Profile]

@@ -1,0 +1,5 @@
+wc_user:
+    invitation:
+        already_pending: Ya hay una invitación pendinete para este usuario
+    mobile:
+        already_registered: El número ya está registrado

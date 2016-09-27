@@ -1,0 +1,5 @@
+wc_user:
+    invitation:
+        already_pending: An invitation is already pending for this user
+    mobile:
+        already_registered: Mobile is already registered

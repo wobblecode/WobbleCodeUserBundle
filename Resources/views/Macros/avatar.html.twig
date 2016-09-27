@@ -1,0 +1,14 @@
+{% macro user_avatar(user) %}
+  {% if user.contact.avatar.type == 'gravatar' %}
+    <img alt="avatar" src="{{ gravatar(user.contact.avatar.gravatar, 50, 'g', 'identicon') }}" class="img-circle">
+  {% endif %}
+
+  {% if user.contact.avatar.type == 'provider' %}
+    <img alt="avatar" src="{{ user.contact.avatar.path|imagine_filter('avatar') }}" class="img-circle">
+  {% endif %}
+
+  {% if user.contact.avatar.type == 'file' %}
+    <img alt="avatar" src="{{ user.contact.avatar.file|imagine_filter('avatar') }}" class="img-circle">
+     {# app.request.schemeAndHttpHost ~ '/bundles/wobblecodeuser/images/no-avatar.jpg' #}
+  {% endif %}
+{% endmacro %}

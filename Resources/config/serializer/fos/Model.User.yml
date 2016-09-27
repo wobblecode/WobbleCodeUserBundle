@@ -1,0 +1,24 @@
+FOS\UserBundle\Model\User:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+      groups: [ui, ui-admin]
+    username:
+      expose: true
+      groups: [ui, ui-admin]
+    usernameCanonical:
+      expose: true
+      groups: [ui, ui-admin]
+    email:
+      expose: true
+      groups: [ui, ui-admin]
+    enabled:
+      expose: true
+      groups: [ui, ui-admin]
+    locked:
+      expose: true
+      groups: [ui, ui-admin]
+    roles:
+      expose: true
+      groups: [ui, ui-admin]

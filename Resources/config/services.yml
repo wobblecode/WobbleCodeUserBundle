@@ -1,0 +1,82 @@
+services:
+
+    wobblecode_user.converter.doctrine.mongodb:
+        class: Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter
+        arguments: ["@doctrine_mongodb"]
+        tags:
+            - { name: request.param_converter }
+
+    wobblecode_user.oauth_mapper:
+        class: WobbleCode\UserBundle\OAuth\OAuthMapper
+
+    wobblecode_user.user_provider:
+        class: WobbleCode\UserBundle\Provider\UserProvider
+        parent: hwi_oauth.user.provider.fosub_bridge.def
+        arguments:
+            - { facebook: authData.facebook.id, google: authData.google.id, twitter: authData.twitter.id, github: authData.github.id }
+        calls:
+            - [setRootDir, ["%kernel.root_dir%"]]
+            - [setUserManager, ["@wobblecode_user.user_manager"]]
+            - [setEventDispatcher, ["@event_dispatcher"]]
+            - [setOrganizationManager, ["@wobblecode_user.organization_manager"]]
+            - [setOAuthMapper, ["@wobblecode_user.oauth_mapper"]]
+
+    wobblecode_user.organization_manager:
+        class: WobbleCode\UserBundle\Manager\OrganizationManager
+        arguments:
+            - "@event_dispatcher"
+            - "@session"
+            - "@doctrine_mongodb.odm.document_manager"
+            - "%wobble_code_user.class.organization%"
+
+    wobblecode_user.role_manager:
+        class: WobbleCode\UserBundle\Manager\RoleManager
+        arguments:
+            - "@event_dispatcher"
+            - "@doctrine_mongodb.odm.document_manager"
+            - "@security.token_storage"
+            - "@security.authorization_checker"
+            - "@wobblecode_user.user_provider"
+
+    wobblecode_user.user_manager:
+        class: WobbleCode\UserBundle\Manager\UserManager
+        parent: fos_user.user_manager.default
+        calls:
+            - [setSession, ["@session"]]
+            - [setEventDispatcher, ["@event_dispatcher"]]
+            - [setDocumentManager, ["@doctrine_mongodb.odm.document_manager"]]
+
+    wobblecode_user.change_password.form.type:
+        class: WobbleCode\UserBundle\Form\Type\ChangePasswordFormType
+        arguments: ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type, alias: wobblecode_user_change_password }
+
+    wobblecode_user.redirect_subscriber:
+        class: WobbleCode\UserBundle\EventListener\RedirectSubscriber
+        arguments:
+            - "@router"
+            - "%wobble_code_user.redirect.password_reset%"
+            - "%wobble_code_user.redirect.signup_confirmed%"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    wobblecode_user.response_listener:
+        class: WobbleCode\UserBundle\EventListener\ResponseListener
+        arguments:
+            - "@session"
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    wobblecode_user.registration_subscriber:
+        class: WobbleCode\UserBundle\EventListener\RegistrationSubscriber
+        arguments:
+            - "@request_stack"
+            - "@wobblecode_user.organization_manager"
+            - "@wobblecode_user.user_manager"
+            - "@wobblecode_user.role_manager"
+            - "@wobblecode_notification.subscription_manager"
+            - "%availablelanguages%"
+        tags:
+            - { name: monolog.logger, channel: app }
+            - { name: kernel.event_subscriber }

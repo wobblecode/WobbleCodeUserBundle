@@ -1,0 +1,24 @@
+{
+    "name": "wobblecode/user-bundle",
+    "desc": "[WIP] Extra functionality on top of FOSUserBundle",
+    "license": "WobbleCode",
+    "type": "bundle",
+    "description": "instasent-admin",
+    "autoload": {
+        "psr-0": {
+            "": "src/",
+            "SymfonyStandard": "app/"
+        },
+        "psr-4": {
+            "WobbleCode\\UserBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "symfony/symfony": "~2.7.*",
+        "friendsofsymfony/user-bundle": "*",
+        "hwi/oauth-bundle": "~0.4.*",
+        "csa/guzzle-bundle": "~1.3.0"
+    }
+  }
+}

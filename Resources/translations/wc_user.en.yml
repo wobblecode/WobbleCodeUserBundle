@@ -1,0 +1,124 @@
+organization:
+    changeType:
+        ok: Your organization has been changed to %type% successfully
+        error:
+            ownerOnly: Only the owner of this organization can change the type
+    owner:
+        label: Owner
+        placeholder: ""
+        help: ""
+    enabled:
+        label: Enabled
+        placeholder: ""
+        help: ""
+    save:
+        label: Save
+
+signup:
+    meta:
+        title: User signup
+    title: User signup
+    desc: ~
+    altMethod: Or use old fashion
+    link:
+        login: I have an account already
+    error:
+        fields: Some fields have erros!
+    form:
+        username:
+            placeholder: Your Username
+        email:
+            placeholder: Your email
+        password:
+            placeholder: Your password min 6 chars
+        passwordRepeat:
+            placeholder: Repeat your password
+        submit:
+            label: Signup
+        social:
+            googleplus: Signup with google+
+            facebook: Signup using twitter
+            github: Signup using github
+
+signupCheck:
+    meta:
+        title: User signup - check your email
+    title: Email confirmation
+    desc: >
+        We have sent you an email to %email%. Please check it and click the
+        confirmation link to complete your registration
+    link:
+        support: Contact Support?
+
+signupConfirmed:
+    meta:
+        title: User signup - confirmed
+    title: Signup Confirmed
+    desc: Your user %username% is now active. Now you can login with your username
+    link:
+        login: Go to Login
+        back: Go Back
+
+login:
+    meta:
+        title: User login
+        desc: User Login
+    title: User Login
+    desc: ~
+    altMethod: Or use old fashion
+    link:
+        recovery: I forgot my password
+        signup: Don't have an account?
+    form:
+        username:
+            placeholder: Username or Email
+        password:
+            placeholder: Your password
+        rememberMe:
+            label: Remember me
+        submit:
+            label: Login
+        social:
+            googleplus: Login with google+
+            facebook: Login using twitter
+            github: Login using github
+
+recovery:
+    meta:
+        title: Recovery Access
+    title: Recovery Access
+    desc: >
+        Put your email or username and we will send you the instructions to your
+        email. If you don't remember any of these, please contact the support.
+    link:
+        support: Contact the support?
+        login: Back to login
+    error:
+        usernameInvalid: User %username% doesn't exist
+    form:
+        username:
+            placeholder: Username or Email
+        submit:
+            label: Recovery access
+
+recoveryReset:
+    meta:
+        title: Reset password
+    title: Reset Password
+
+recoveryCheck:
+    meta:
+        title: Reset password - check your email
+    title: Email Confirmation
+    desc: >
+        We have sent you an email. Please check the mail and click the
+        confirmation link to reset your password.
+
+recoveryAlready:
+    meta:
+        title: Reset password - already requested
+    title: Reste already requested
+    desc: >
+        The reset process has been already requested for this user. Please check
+        your email and smap folder. Contact the support if you haven't received
+        the email
