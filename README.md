@@ -1,4 +1,4 @@
-# WobbleCodeUserBundle - Extra functionality on top of FOSUserBundle
+# WobbleCodeUserBundle - Extra functionality on top of FOSUserBundle
 
 ## Features
 
