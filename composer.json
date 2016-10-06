@@ -1,9 +1,8 @@
 {
     "name": "wobblecode/user-bundle",
-    "desc": "[WIP] Extra functionality on top of FOSUserBundle",
+    "description": "[WIP] Extra functionality on top of FOSUserBundle",
     "license": "WobbleCode",
     "type": "bundle",
-    "description": "instasent-admin",
     "autoload": {
         "psr-0": {
             "": "src/",
