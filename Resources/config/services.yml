@@ -76,7 +76,7 @@ services:
             - "@wobblecode_user.user_manager"
             - "@wobblecode_user.role_manager"
             - "@wobblecode_notification.subscription_manager"
-            - "%availablelanguages%"
+            - "%available_languages%"
         tags:
             - { name: monolog.logger, channel: app }
             - { name: kernel.event_subscriber }
