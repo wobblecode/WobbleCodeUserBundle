@@ -22,6 +22,8 @@ class WobbleCodeUserExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('wobble_code_user.app.available_languages', $config['app']['available_languages']);
+
         $container->setParameter('wobble_code_user.class.user', $config['class']['user']);
         $container->setParameter('wobble_code_user.class.organization', $config['class']['organization']);
 

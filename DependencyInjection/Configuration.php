@@ -37,6 +37,14 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('signup_confirmed')->end()
                     ->end()
                 ->end()
+                ->arrayNode('app')
+                    ->children()
+                        ->arrayNode('available_languages')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(['en'])
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
