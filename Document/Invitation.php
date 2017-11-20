@@ -5,7 +5,7 @@ namespace WobbleCode\UserBundle\Document;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique;
 use JMS\Serializer\Annotation as Serializer;
 
@@ -120,7 +120,9 @@ class Invitation
     public function isDifferentEmail(ExecutionContextInterface $context)
     {
         if ($this->getEmail() == $this->getFrom()->getEmail()) {
-            $context->addViolationAt('email', 'You can\'t invite yourself!', [], null);
+            $context->buildViolation('You can\'t invite yourself!')
+                    ->atPath('email')
+                    ->addViolation();
         }
     }
 
